@@ -29,3 +29,4 @@ Route::get('/Ejercicio7','EjerciciosController@Ejercicio7');
 Route::get('/Ejercicio8','EjerciciosController@Ejercicio8');
 Route::get('/Ejercicio9','EjerciciosController@Ejercicio9');
 Route::get('/EjercicioImagen','EjerciciosController@EjercicioImagen');
+Route::get('/Galeria','EjerciciosController@Galeria');

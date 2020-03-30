@@ -15,6 +15,7 @@
             <a class="nav-item nav-link" href="/Ejercicio7">Ejercicio 7</a>
             <a class="nav-item nav-link" href="/Ejercicio8">Ejercicio 8</a>
             <a class="nav-item nav-link" href="/EjercicioImagen">Ejercicio Imagenes</a>
+            <a class="nav-item nav-link" href="/Galeria">Galeria</a>
         </div>
     </div>
 </nav>

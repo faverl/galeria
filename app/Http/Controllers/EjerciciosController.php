@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PaginaWeb\Imagen;
+use App\Galeria;
 
 
 class EjerciciosController extends Controller{
@@ -61,9 +62,21 @@ class EjerciciosController extends Controller{
       $ruta3="https://previews.123rf.com/images/nopparats/nopparats1504/nopparats150400134/39523656-sendero-en-un-jard%C3%ADn-bot%C3%A1nico-con-orqu%C3%ADdeas-bordean-el-camino-.jpg";
       $imagen3 = new Imagen("Jardin de Orquideas", "Pasaje de jardin, con arco de orquideas",$ruta3);
 
-      $imagenes = [$imagen1,$imagen2,$imagen2];
+      $imagenes = [$imagen1,$imagen2,$imagen3];
 
       return view('EjercicioImagen',compact("imagenes","title"));
+    }
+
+    public function Galeria(){
+
+      $title="Galeria";
+      $imagenes = array();
+
+      foreach($datosdb=Galeria::all() as $dato){
+        $imagenes[] = new Imagen($dato->nombre,$dato->descripcion,$dato->ruta);
+      }
+      
+      return view('Galeria',compact("imagenes","title"));
     }
 
 

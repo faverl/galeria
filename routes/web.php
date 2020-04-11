@@ -18,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Rutas de los links de la galeria de imagenes
+Route::get('/CargarAvatar', 'GaleriaController@CargarAvatar');
+Route::get('/RegistrarUsuario','GaleriaController@RegistrarUsuario');
+Route::post('/RegistroUser','GaleriaController@RegistroUser');
+Route::get('/CargarUsuario','GaleriaController@CargarUsuario' );
+
 //Rutas de los links de los Ejercicios del portal home
 Route::get('/Ejercicio1','EjerciciosController@Ejercicio1');
 Route::get('/Ejercicio2','EjerciciosController@Ejercicio2');

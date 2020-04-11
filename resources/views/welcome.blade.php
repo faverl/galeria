@@ -93,6 +93,7 @@
                 <br>
                 <div class="links">
                     <a href="EjercicioImagen">EJERCICIO IMAGENES</a>
+                    <a href="Galeria">Galeria</a>
 
                 </div>
             </div>

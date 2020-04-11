@@ -53,7 +53,7 @@ class EjerciciosController extends Controller{
 
       $title="Ejercicio Imagen";
 
-      $ruta1="http://blog.nuestroclima.com/wp-content/uploads/2019/08/cropped-Atardecer-Purpura-1.png";
+      $ruta1="https://www.65ymas.com/uploads/s1/90/95/9/los-mejores-atardereceres-del-mundo-puskcar-bigstock_1_621x621.jpeg";
       $imagen1 = new Imagen("Atardecer","Imagen de un atardecer", $ruta1);
 
       $ruta2="https://www.colombiamegusta.com/wp-content/uploads/VolcanoRuiz-750.jpg.webp";

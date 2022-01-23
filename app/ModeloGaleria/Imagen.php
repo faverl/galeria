@@ -61,7 +61,7 @@ class Imagen extends Model
         $imagen->album()->detach();
         $imagen->delete();
 
-        $files = glob('imagenes/' . $imagen->getImagen());
+        $files = glob('storage/' . $imagen->getImagen());
         foreach ($files as $file) {
             if (is_file($file)) {
                 unlink($file);
@@ -179,7 +179,7 @@ class Imagen extends Model
         $date = Carbon::now();
         $nuevoNombreImagen = "IMG-" . $date->year . $date->month . $date->day . $date->hour . $date->minute . $date->second .
             $date->milliseconds . "." . $imagenFile->getClientOriginalExtension();
-        $imagenFile->move('imagenes', $nuevoNombreImagen);
+        $imagenFile->move('storage', $nuevoNombreImagen);
         return $nuevoNombreImagen;
     }
 }

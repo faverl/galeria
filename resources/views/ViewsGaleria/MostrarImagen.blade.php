@@ -14,13 +14,13 @@
                     <!-- Comienza card que muestra la imagen y su información -->
                     <div class="card-header m-1">
                         <img class="img-fluid m-1"
-                             src="{{asset('imagenes/avatars/'.$imagen->getUsuario()->getAvatar()->getRutaImagen())}}"
-                             heigth="30" width="30px">
+                            src="{{asset('imagenes/avatars/'.$imagen->getUsuario()->getAvatar()->getRutaImagen())}}"
+                            heigth="30" width="30px">
                         <small class="text-muted">{{$imagen->getUsuario()->nickName}}</small><br>
                         <small class="text-muted">{{$imagen->ContarDias()}}</small>
                     </div>
                     <div class="card-body text-left">
-                        <img class="card-img mb-3" src="{{asset('imagenes/'.$imagen->getImagen())}}">
+                        <img class="card-img mb-3" src="{{asset('storage/'.$imagen->getImagen())}}">
                         <h6 class="card-subtitle">{{$imagen->getTitulo()}}</h6>
                         <hr class="bg-info">
                         <p class="card-text">{{$imagen->getDescripcion()}}</p>
@@ -45,7 +45,7 @@
                                 @if($imagen->getUsuario()->getId() == auth()->user()->getId())
                                     <div class="btn-group">
                                         <a class="btn btn-sm btn-outline-secondary"
-                                           href="{{ route('imagen.edit',$imagen->getId())}}" role="button">Editar</a>
+                                            href="{{ route('imagen.edit',$imagen->getId())}}" role="button">Editar</a>
                                     </div>
                                     <small class="text-muted">
                                         <!--Modal para eliminar la imagen-->

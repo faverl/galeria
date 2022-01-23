@@ -15,13 +15,13 @@
                     <div class="card float-left h-100">
                         <div class="card-header">
                             <img class="img-fluid m-1"
-                                 src="{{asset('imagenes/avatars/'.$imagen->getUsuario()->getAvatar()->getRutaImagen())}}"
-                                 heigth="30px" width="30px">
+                                src="{{asset('imagenes/avatars/'.$imagen->getUsuario()->getAvatar()->getRutaImagen())}}"
+                                heigth="30px" width="30px">
                             <small class="text-muted">{{$imagen->getUsuario()->nickName}}</small>
                             <small class="text-muted">{{$imagen->getFechaCreacion()}}</small>
                         </div>
                         <a href="{{ route('imagen.show',$imagen->getId())}}">
-                            <img class="card-img-top h-100" src="{{asset('imagenes/'.$imagen->getImagen())}}">
+                            <img class="card-img-top h-100" src="{{asset('storage/'.$imagen->getImagen())}}">
                         </a>
                         <div class="card-body">
                             <h6 class="card-subtitle">{{$imagen->getTitulo()}}</h6>
@@ -30,7 +30,7 @@
                         <div class="card-footer d-flex">
                             <small class="text-muted">
                                 <a class="btn btn-sm btn-outline-secondary"
-                                   href="{{ route('imagen.show',$imagen->getId())}}">Comentar</a>
+                                    href="{{ route('imagen.show',$imagen->getId())}}">Comentar</a>
                             </small>
                         </div>
                     </div>

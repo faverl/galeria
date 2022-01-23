@@ -18,7 +18,7 @@
                 <div class="card mb-5">
 
                     <div class="card-body">
-                        <img class="card-img mb-2" src="{{asset('imagenes/'.$imagen->imagen)}}">
+                        <img class="card-img mb-2" src="{{asset('storage/'.$imagen->imagen)}}">
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">{{$imagen->created_at}}</small>

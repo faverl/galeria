@@ -18,7 +18,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow border-dark">
                             <img class="card-img-top" src="{{asset('imagenes/default.png')}}"
-                                 data-holder-rendered="true">
+                                data-holder-rendered="true">
                             <div class="card-body">
                                 <div class="card-img-overlay text-white"><br>
                                     <h5 class="card-title">{{$album->getTitulo()}}</h5>
@@ -29,7 +29,7 @@
                                         @if($album->getUsuario()->getId() == auth()->user()->getId())
                                             <div class="btn-group">
                                                 <a class="btn btn-sm btn-outline-secondary"
-                                                   href="{{ route('album.edit',$album->getId())}}" role="button">Editar</a>
+                                                    href="{{ route('album.edit',$album->getId())}}" role="button">Editar</a>
                                             </div>
                                             <div class="btn-group">
                                                 <small class="text-muted">
@@ -43,8 +43,8 @@
                             </div>
                             <div class="card-footer">
                                 <img class="img-fluid m-1"
-                                     src="{{asset('imagenes/avatars/'.$album->getUsuario()->getAvatar()->getRutaImagen())}}"
-                                     heigth="30" width="30px">
+                                    src="{{asset('imagenes/avatars/'.$album->getUsuario()->getAvatar()->getRutaImagen())}}"
+                                    heigth="30" width="30px">
                                 <small class="text-muted">{{$album->usuario->nickName}}</small>
                                 <small class="text-mutedjustify-content-center">{{$album->created_at}}</small>
                             </div>
@@ -76,7 +76,7 @@
         <hr>
         <div class="btn-group">
             <a class="btn btn-sm btn-outline-primary" data-toggle="collapse" href="#collapseSubirImagen"
-               aria-expanded="false" aria-controls="collapseSubirImagen">Subir Imagen</a>
+                aria-expanded="false" aria-controls="collapseSubirImagen">Subir Imagen</a>
         </div>
         <div class="collapse" id="collapseSubirImagen">
             <div class="container">
@@ -113,14 +113,14 @@
                                 <label for="titulo" class="col-form-label col-md-4">Título</label><br>
                                 <div class="col-md-8">
                                     <input type="text" name="titulo" id="titulo" class="form-control" autofocus="true"
-                                           value="{{old('titulo')}}">
+                                            value="{{old('titulo')}}">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <label for="descripcion" class="col-form-label col-md-4">Descripción</label><br>
                                 <div class="col-md-8">
                                     <input type="text" name="descripcion" id="descripcion" class="form-control"
-                                           value="{{old('descripcion')}}">
+                                            value="{{old('descripcion')}}">
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -178,7 +178,7 @@
                         </div>
                     </div>
                     <div class="card mb-3 border border-dark">
-                        <img class="card-img-top " src="{{asset('imagenes/'.$imagen->getImagen())}}">
+                        <img class="card-img-top " src="{{asset('storage/'.$imagen->getImagen())}}">
                         <div class="card-body">
                             <div class="card-img-overlay text-white"><br>
                                 <h5 class="card-title">{{$imagen->getTitulo()}}</h5>
@@ -186,7 +186,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a class="btn btn-sm btn-outline-primary"
-                                       href="{{ route('imagen.show',$imagen->getId())}}">Ver</a>
+                                        href="{{ route('imagen.show',$imagen->getId())}}">Ver</a>
                                 </div>
                                 <div class="btn-group">
                                     <form action="{{ route('Desvincular',['album' => $album, 'imagen' => $imagen])}}" method="POST">

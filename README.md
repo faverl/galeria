@@ -1,6 +1,6 @@
 ## About Galeria
 
-Esta es una gelaria realizada como trabajo universitario para el curso de desarrollo web con PHP e implementación de Framework PHP.
+Esta es una gelaria realizada como trabajo universitario para el curso de desarrollo web con PHP e implementación de Framework PHP Laravel.
 
 ## License
 

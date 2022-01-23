@@ -4,20 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Electiva PHP</title>
+        <title>Laravel</title>
 
         <!-- Fonts -->
-        <!--<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">-->
-        <link href="https://fonts.google.com/specimen/Bitter?selection.family=Bitter:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
-                color: #6B5D65;
-                font-family: 'Bitter', sans-serif;
-                font-weight: 150;
-                height: 80vh;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
                 margin: 0;
             }
 
@@ -46,12 +45,12 @@
             }
 
             .title {
-                font-size: 60px;
+                font-size: 84px;
             }
 
             .links > a {
                 color: #636b6f;
-                padding: 0 30px;
+                padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: .1rem;
@@ -66,35 +65,35 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('logout') }}">Logout</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Electiva PHP <br>
-                    Framework Laravel
+                    Laravel
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentacion</a>
-                </div>
-                <br>
-                <div class="links">
-                    <a href="Ejercicio1">EJERCICIO 1</a>
-                    <a href="Ejercicio2">EJERCICIO 2</a>
-                    <a href="Ejercicio3">EJERCICIO 3</a>
-                    <a href="Ejercicio4">EJERCICIO 4</a>
-                </div>
-                <br>
-                <div class="links">
-                    <a href="Ejercicio5">EJERCICIO 5</a>
-                    <a href="Ejercicio6">EJERCICIO 6</a>
-                    <a href="Ejercicio7">EJERCICIO 7</a>
-                    <a href="Ejercicio8">EJERCICIO 8</a>
-                </div>
-                <br>
-                <div class="links">
-                    <a href="EjercicioImagen">EJERCICIO IMAGENES</a>
-                    <a href="Galeria">Galeria</a>
-
+                    <a href="https://laravel.com/docs">Docs</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://blog.laravel.com">Blog</a>
+                    <a href="https://nova.laravel.com">Nova</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://vapor.laravel.com">Vapor</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
         </div>

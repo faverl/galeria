@@ -1,38 +1,50 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\ModeloGaleria\Imagen;
+Use App\ModeloGaleria\Comentario;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
+|Se registran las rutas web|
 */
 
-//Ruta del homre del sitio web
-Route::get('/', function () {
+//Ruta a la pagina Welcom de Laravel
+Route::get('/welcome', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+//Ruta del Inicio del Proyecto Galeria
+Route::get('/', 'GaleriaController@home')->name('home');
+Route::get('/home', 'GaleriaController@home')->name('home');
+
+//Rutas para ImagenControlller
+Route::resource('imagen','ImagenController');
+Route::get('/MisImagenes','ImagenController@MyImagenes')->name('imagen.misimagenes');
+
+//Rutas para AlbumControlller
+Route::resource('album','AlbumController');
+Route::get('/MisAlbumes','AlbumController@MyAlbumes')->name('album.misalbumes');
+
+//Rutas para ComentarioController
+Route::resource('comentarios','ComentarioController');
+
+//RUtas para RespuestaController
+Route::resource('respuestas','RespuestaController');
 
 //Rutas de los links de la galeria de imagenes
-Route::get('/CargarAvatar', 'GaleriaController@CargarAvatar');
-Route::get('/RegistrarUsuario','GaleriaController@RegistrarUsuario');
+Route::get('/RegistrarUsuario','GaleriaController@RegistrarUsuario')->name('registrar');
 Route::post('/RegistroUser','GaleriaController@RegistroUser');
-Route::get('/CargarUsuario','GaleriaController@CargarUsuario' );
+Route::post('/agregar/{imagen}', 'GaleriaController@Agregar')->name('agregar');
+Route::post('/CambiarPosicion/{album?}/{imagen?}/{mover?}', 'GaleriaController@CambiarPosicion')->name('CambiarPosicion');
+Route::post('/Desvincular/{album?}/{imagen?}', 'GaleriaController@Desvincular')->name('Desvincular');
 
-//Rutas de los links de los Ejercicios del portal home
-Route::get('/Ejercicio1','EjerciciosController@Ejercicio1');
-Route::get('/Ejercicio2','EjerciciosController@Ejercicio2');
-Route::get('/Ejercicio3','EjerciciosController@Ejercicio3');
-Route::get('/Ejercicio4','EjerciciosController@Ejercicio4');
-Route::get('/Ejercicio5','EjerciciosController@Ejercicio5');
-Route::get('/Ejercicio6','EjerciciosController@Ejercicio6');
-Route::get('/Ejercicio7','EjerciciosController@Ejercicio7');
-Route::get('/Ejercicio8','EjerciciosController@Ejercicio8');
-Route::get('/Ejercicio9','EjerciciosController@Ejercicio9');
-Route::get('/EjercicioImagen','EjerciciosController@EjercicioImagen');
-Route::get('/Galeria','EjerciciosController@Galeria');
+//Rutas para LoguinController
+Route::get('/login', 'LoginController@loguear')->name('login');
+Route::post('/login','LoginController@login')->name('login');
+Route::get('/logout','LoginController@logout')->name('logout');
+
+//Rutas de pruebas Pruebas no tener en cuenta
+Route::get('/ComentarioImagen','GaleriaController@comentario');

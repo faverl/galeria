@@ -1,0 +1,17 @@
+
+.InactivaRadio {
+    -webkit-appearance: none;
+}
+
+.labelAvatar {
+    display: block;
+    height: 75px;
+    width: 75px;
+    position: center;
+    margin: auto;
+    float: left;
+}
+
+.seleccionRadio:checked + label {
+    background-color: #03ff1e;
+}

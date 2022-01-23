@@ -2,125 +2,85 @@
 
 namespace App\Http\Controllers;
 
+use App\ModeloGaleria\Album;
+use App\ModeloGaleria\Imagen;
 use Illuminate\Http\Request;
 use App\ModeloGaleria\Avatar;
-use App\ModeloGaleria\Person;
-use App\ModeloGaleria\User;
+use App\ModeloGaleria\Persona;
+use App\ModeloGaleria\Usuario;
+use Illuminate\Support\Facades\Auth;
 
 class GaleriaController extends Controller
 {
-    public function CargarUsuario()
+
+    public function home()
     {
-
-        return Person::find(1)->user;
-    }
-
-    public function CargarAvatar()
-    {
-
-        if ($gestor = opendir('imagenes/avatars')) {
-
-            $i = 1;
-
-            while (false !== ($archivo = readdir($gestor))) {
-                if ($archivo != "." && $archivo != "..") {
-                    if ($i == 5) {
-                        $i = 0;
-                    }
-                    $i++;
-                    Avatar::create(["rutaImagen" => $archivo]);
-                }
-            }
-
-            closedir($gestor);
-        }
-
-        return "Imagenes Agregadas";
+        return view('ViewsGaleria/home');
     }
 
     public function RegistroUser(Request $request)
     {
-        $ghost = 1;
+        $persona = new Persona();
+        $usuario = new Usuario();
 
         $request->validate([
-            'cedula' => 'required',
+            'cedula' => 'required|unique:persona',
             'nombre' => 'required',
-            'nickName' => 'required',
-            'clave' => 'required'
+            'nickName' => 'required|unique:usuario',
+            'password' => 'required',
+            'avatar_id' => 'required'
         ]);
 
-        User::create([
-            "person_id" => Person::create([
-                "cedula" => $request->cedula,
-                "nombre" => $request->nombre
-            ])->id,
-            "nickName" => $request->nickName,
-            "clave" => $request->clave,
-            "avatar_id" => (is_null($request->avatar_id) ? $ghost : $request->avatar_id)
-        ]);
+        $persona->setCedula($request->input('cedula'));
+        $persona->setNombre($request->input('nombre'));
+        $persona->CrearPersona($persona);
 
-        return back()->with('mensaje', "Su Usuario fue creado");
+        $usuario->setPersonaId($persona);
+        $usuario->setNickName($request->input('nickName'));
+        $usuario->setPassword($request->input('password'));
+        $usuario->setAvatarId($request->input('avatar_id'));
+        $usuario->CrearUsuario($usuario);
+
+        $logueo = $request->only('nickName','password');
+
+        Auth::attempt($logueo);
+        return redirect()->route('home')->with('mensaje', "Su Usuario fue creado");
     }
 
     public function RegistrarUsuario()
     {
-        $avatars = Avatar::all()->except(1);
-        return view('ViewsGaleria/RegistrarUsuario', compact("avatars"));
+        $avatares = new Avatar();
+        $avatares = $avatares->ListarAvateres();
+        return view('ViewsGaleria/RegistrarUsuario', compact("avatares"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function Agregar(Request $request, Imagen $imagen)
     {
-        //
+        $request->validate([
+            'album_id' => 'required|numeric'
+        ]);
+
+        $album = new Album();
+        $album = $album->ConsultarAlbum($request->input('album_id'));
+        $resultado = $imagen->RelacionarAlbum($imagen, $album,1);
+        if ($resultado) {
+            return back()->with('actualizacion', "Se agrego la imagen " . $imagen->getTitulo() . "al album " . $album->getTitulo());
+        } else {
+            return back()->with('actualizacion', "La imagen " . $imagen->getTitulo() . " ya pertenece al album " . $album->getTitulo());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function CambiarPosicion(Request $request, Album $album, Imagen $imagen, $mover)
     {
-        //
+        $mensaje = $album->CambiarPosicion($imagen, $mover);
+        return back()->with('actualizacion', $mensaje . $imagen->getTitulo());
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function Desvincular(Request $request, Album $album, Imagen $imagen)
     {
-        //
-    }
+        $mensaje = $album->Desvincular($album, $imagen);
+        return back()->with('actualizacion', $mensaje . $imagen->getTitulo());
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
